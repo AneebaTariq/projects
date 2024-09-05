@@ -3,8 +3,8 @@
 #*********************************
 
 chicken_burger={1:'Bronco chicken burger',2:'cronco chicken burger',3:'chee haww chicken',4:'mighty rodeo chicken',5:'big bang',6:'big ben',7:'fajita',8:'pablito',9:'cowboy',10:'kruch'}
-price_chicken_burger={"Bronco chicken burger":[499,675],'cronco chicken burger':[499,675],'chee haww chicken':[799,949],'mighty rodeo chicken':[799,975],'big bang':[799,975],'big ben':[725,899],'fajita':[575,775],'pablito':[499,699],'cowboy':[525,699],'kruch':249}
-beef_burger={1:'rancheronii',2:'chee haww beef',3:'mighty rodeo beef',4:'Butcher',5:'taxes jack',6:'beef steak'}
+price_chicken_burger={"Bronco chicken burger":[499,675],'cronco chicken burger':[499,675],'chee haww chicken':[799,949],'mighty rodeo chicken':[799,975],'bigbang':[799,975],'big ben':[725,899],'fajita':[575,775],'pablito':[499,699],'cowboy':[525,699],'kruch':249}
+beef_burger={1:'rancheronii',2:'chee haww beef',3:'mighty rodeo beef',4:'Butcher',5:'taxes jack',6:'beefsteak'}
 price_beef_burger={'rancheronii':[799,975],'chee haww beef':[799,975],'mighty rodeo beef':[799,975],'Butcher':[699,875],'taxes jack':[699,875],'beef steak':[575,795]}
 pizza={1:'thin crust pizza',2:'crown pizza',3:'chicken tikka pan',4:'chicken fajita pan',5:'ranch special pan',6:'margherita dop',7:'pepperoni pizza'}
 price_pizza={'thin crust pizza':{'medium':[1,1049],'large':[2,1399],'xxl':[3,1699]},'crown pizza':{'medium':[1,1299],'large':[2,1699],'16 inches':[3,2299]},'chicken tikka pan':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'chicken fajita pan':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'ranch special pan':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'margherita dop':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'pepperoni pizza':{'small':[1,499],'medium':[2,999],'large':[3,1299]}}
