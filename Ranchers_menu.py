@@ -23,55 +23,6 @@ any_2_deal_drinks={1:'mirinda',2:'pepsi'}
 #*** Function to order chicken burger ***
 #****************************************
 
-def order_chicken_burger(bill,dic):
-    ls=[]
-    inp=int(input("Enter your order no :"))
-    while True:
-        if inp<=10 and inp>0:
-            break
-        else:
-            inp = int(input("Wrong Input. Please Enter your order no again:"))
-    q=int(input("Enter Quantity : "))
-    if inp>=1 and inp<=9:
-        print("combo or regular")
-        print("Enter 'c' for combo","Enter 'r' for regular")
-        a=input()
-        while True:
-            if a == 'c' or a == 'r':
-                break
-            else:
-                print("Wrong Input.Please Enter 'c' for combo and 'r' for regular")
-                a = input()
-        if a=='c':
-            for k , v in chicken_burger.items():
-                if k == inp:
-                    ls.append(v+'(combo)')
-                    ls.append(q)
-                    for c,d in price_chicken_burger.items():
-                        if v == c:
-                            ls.append(d[1])
-                            bill[0]=bill[0] + q*d[1]
-        elif a=='r':
-            for k , v in chicken_burger.items():
-                if k == inp:
-                    ls.append(v + "(regular)")
-                    ls.append(q)
-                    for c,d in price_chicken_burger.items():
-                        if v == c:
-                            ls.append(d[0])
-                            bill[0]=bill[0] + q *d[0]
-    if inp == 10:
-        for k, v in chicken_burger.items():
-            if k == inp:
-                ls.append(v)
-                ls.append(q)
-                for c, d in price_chicken_burger.items():
-                    if v == c:
-                        ls.append(d)
-                        bill[0] = bill[0] + q *d
-    dic[len(dic)+1]=ls
-    return bill
-
 #*************************************
 #*** Function to order beef burger ***
 #*************************************
