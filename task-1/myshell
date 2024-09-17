@@ -1,0 +1,369 @@
+#! /bin/bash 
+#______________________________1st_____________________________
+#make directory
+if [[ $1 == "mkdir" ]]
+then 
+echo "Enter the Directory name : "
+read dn
+echo "Enter the path : "
+read pn
+if [[ -d "$pn/$dn"  ]]
+then
+echo "Directory already exsist "
+ls -l $pn
+else
+mkdir "$pn/$dn"
+if [[ $? -eq 0 ]]
+then
+echo "Directory has been made succesfully "
+ls -l $pn
+else 
+echo "Error"
+fi
+fi
+#______________________________2nd_____________________________
+#change directory
+elif [[ $1 == "cd" ]]
+then 
+echo "Enter the directory path "
+read dp
+cd "$dp"
+if [[ $? -eq 0 ]]
+then
+echo "Directory has been changed succesfully "
+else 
+echo "Error"
+fi
+#______________________________3rd_____________________________
+#display list
+elif [[ $1 == "ls" ]]
+then
+echo "Enter the path to the directory"
+read pd
+ls "$pd"
+if [[ $? -ne 0 ]]
+then 
+echo "Error"
+fi
+#______________________________4th_____________________________
+#perform arthimethic operations
+elif [[ $1 == "arthop" ]]
+then
+a="y"
+while [ $a == "y" ]
+do
+echo "Enter the first number:"
+read n1
+echo "Enter the operation you want to perform:"
+echo "(*,/,+,-,%)"
+read op
+echo "Enter the second number:"
+read n2
+echo "SOLUTION: $(( "$n1$op$n2" ))"
+echo "Do you want to perform another arthimethic operation [y/n]:"
+read a
+while [[ $a != "y" && $a != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "Do you want to perform another arthimethic operation [y/n]:"
+read a
+done
+done
+#______________________________5th_____________________________
+#change permission
+elif [[ $1 == "chmod" ]]
+then
+echo "Enter the name of the directory or file you wand to change permissions of :"
+read fname
+echo "Enter the path to the directory or file"
+read fpath
+echo "Enter 'y' if you want to give the permission and 'n' if you do not want to give the permision"
+s1=0
+echo "OWNER PERMISSIONS"
+echo "read[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "read[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s1=$(( $s1+4 ))
+fi
+echo "write[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "write[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s1=$(( $s1+2 ))
+fi
+echo "execute[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "execute[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s1=$(( $s1+1 ))
+fi
+s2=0
+echo "GROUP MEMBER PERMISSIONS"
+echo "read[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "read[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s2=$(( $s2+4 ))
+fi
+echo "write[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "write[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s2=$(( $s2+2 ))
+fi
+echo "execute[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "execute[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s2=$(( $s2+1 ))
+fi
+s3=0
+echo "OTHERS PERMISSIONS"
+echo "read[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "read[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s3=$(( $s3+4 ))
+fi
+echo "write[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "write[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s3=$(( $s3+2 ))
+fi
+echo "execute[y/n]:"
+read inp
+while [[ $inp != "y" && $inp != "n" ]]
+do
+echo "WRONG COMMAND" 
+echo "execute[y/n]:"
+read inp
+done
+if [[ $inp == "y" ]]
+then
+s3=$(( $s3+1 ))
+fi
+chmod "$s1$s2$s3" "$fpath/$fname"
+ls -l "$fpath"
+#______________________________6th_____________________________
+#make file
+elif [[ $1 == "touch" ]]
+then 
+echo "Enter the file name : "
+read dn
+echo "Enter the path : "
+read pn
+if [[ -e "$pn/$dn" ]]
+then
+echo "file already exsist "
+ls -l $pn
+else
+touch "$pn/$dn"
+if [[ $? -eq 0 ]]
+then
+echo "file has been made succesfully "
+ls -l $pn
+else 
+echo "Error"
+fi
+fi
+#______________________________7th_____________________________
+#adduser
+elif [[ $1 == "adduser" ]]
+then
+echo "Enter the name of the user :"
+read uname
+sudo adduser $uname
+if [[ $? -eq 0 ]]
+then
+echo "user had been made succesfully "
+else 
+echo "Error"
+fi
+#______________________________8th_____________________________
+#copy 
+elif [[ $1 == "cp" ]]
+then 
+echo "Enter the name of file or directory you want to copy:"
+read fn
+echo "Enter the path to the file or directory:"
+read pn
+echo "Enter the path where you want to paste the file or directory:"
+read ln
+cp -r "$pn/$fn" $ln 
+if [[ $? -eq 0 ]]
+then
+echo "$fn had been copied succesfully in $ln"
+ls -l $ln
+else 
+echo "Error"
+fi
+#______________________________9th_____________________________
+#move
+elif [[ $1 == "mv" ]]
+then
+echo "Enter the name of file or directory you want to move:"
+read fn
+echo "Enter the path to the file or directory:"
+read pn
+echo "Enter the path where you want to paste the file or directory:"
+read ln
+mv "$pn/$fn" $ln 
+if [[ $? -eq 0 ]]
+then
+echo "$fn had been moved succesfully in $ln"
+ls -l $ln
+else 
+echo "Error"
+fi
+#______________________________10th_____________________________
+#rename
+elif [[ $1 == "rename" ]]
+then
+echo "Enter the name of file or directory you want to rename:"
+read fn
+echo "Enter the path to the file or directory:"
+read pn
+echo "Enter the new name for the file or directory:"
+read new
+mv "$pn/$fn" "$pn/$new" 
+if [[ $? -eq 0 ]]
+then
+echo "$fn name has been succesfully changed to $new"
+ls -l $pn
+else 
+echo "Error"
+fi
+#______________________________11th_____________________________
+#delete
+elif [[ $1 == "rm" ]]
+then
+echo "Enter the name of the file or directory you want to remove:"
+read fn
+echo "Enter the path to the file or directory:"
+read pn
+rm -r "$pn/$fn"
+if [[ $? -eq 0 ]]
+then
+echo "$fn has been removed succesfully"
+ls -l $pn
+else 
+echo "Error"
+fi
+#______________________________12th_____________________________
+#link
+elif [[ $1 == "ln" ]]
+then
+echo "Enter the name of the file or directory you want to make a link to:"
+read fn
+echo "Enter the path to the file or directory:"
+read pn
+echo "Enter the name of the link:"
+read ln
+echo "Enter the path to the directory where u want to save the link:"
+read pl
+ln -s "$pn/$fn" "$pl/$ln"
+if [[ $? -eq 0 ]]
+then
+echo "link '$ln' has been made succesfully"
+ls -l $pl
+else 
+echo "Error"
+fi
+#______________________________13th_____________________________
+#compress
+elif [[ $1 == "archive" ]]
+then
+echo "Enter the name of the file or directory name you want to compress:"
+read fn
+echo "Enter the path to the file or directory:"
+read pn
+echo "Enter the path to the directory where u want to save the compressed file:"
+read pl
+tar -czvf "$pl/$fn.tar.gz" "$pn/$fn"
+if [[ $? -eq 0 ]]
+then
+echo "$fn has been compressed succesfully"
+ls -l $pl
+else 
+echo "Error"
+fi
+#______________________________14th_____________________________
+#extract
+elif [[ $1 == "extract" ]]
+then
+echo "Enter the name of the file or directory name you want to extract:"
+read fn
+echo "Enter the path to the file or directory:"
+read pn
+echo "Enter the path to the directory where u want to save the extracted file:"
+read pl
+echo "Enter the name for the extracted file"
+read ext
+mkdir "$pl/$ext"
+tar -xzvf "$pn/$fn" -C "$pl/$ext"
+if [[ $? -eq 0 ]]
+then
+echo "$fn has been compressed succesfully"
+ls -l $pl
+else 
+echo "Error"
+fi
+#______________________________15th_____________________________
+#manual
+elif [[ $1 == "man" ]]
+then
+cat "/usr/bin/myshell_manual"
+else
+echo "Wrong Commnad"
+echo "write commnad 'myshell man' to see the manual of myshell"
+fi

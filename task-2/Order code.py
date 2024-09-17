@@ -1,10 +1,6 @@
-#*********************************
-# *** All the itemsin the menu ***
-#*********************************
-
 chicken_burger={1:'Bronco chicken burger',2:'cronco chicken burger',3:'chee haww chicken',4:'mighty rodeo chicken',5:'big bang',6:'big ben',7:'fajita',8:'pablito',9:'cowboy',10:'kruch'}
-price_chicken_burger={"Bronco chicken burger":[499,675],'cronco chicken burger':[499,675],'cheehaww chicken':[799,949],'mighty rodeo chicken':[799,975],'bigbang':[799,975],'big ben':[725,899],'fajita':[575,775],'pablito':[499,699],'cowboy':[525,699],'kruch':249}
-beef_burger={1:'rancheronii',2:'chee haww beef',3:'mighty rodeo beef',4:'Butcher',5:'taxes jack',6:'beefsteak'}
+price_chicken_burger={"Bronco chicken burger":[499,675],'cronco chicken burger':[499,675],'chee haww chicken':[799,949],'mighty rodeo chicken':[799,975],'big bang':[799,975],'big ben':[725,899],'fajita':[575,775],'pablito':[499,699],'cowboy':[525,699],'kruch':249}
+beef_burger={1:'rancheronii',2:'chee haww beef',3:'mighty rodeo beef',4:'Butcher',5:'taxes jack',6:'beef steak'}
 price_beef_burger={'rancheronii':[799,975],'chee haww beef':[799,975],'mighty rodeo beef':[799,975],'Butcher':[699,875],'taxes jack':[699,875],'beef steak':[575,795]}
 pizza={1:'thin crust pizza',2:'crown pizza',3:'chicken tikka pan',4:'chicken fajita pan',5:'ranch special pan',6:'margherita dop',7:'pepperoni pizza'}
 price_pizza={'thin crust pizza':{'medium':[1,1049],'large':[2,1399],'xxl':[3,1699]},'crown pizza':{'medium':[1,1299],'large':[2,1699],'16 inches':[3,2299]},'chicken tikka pan':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'chicken fajita pan':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'ranch special pan':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'margherita dop':{'small':[1,499],'medium':[2,999],'large':[3,1299]},'pepperoni pizza':{'small':[1,499],'medium':[2,999],'large':[3,1299]}}
@@ -18,53 +14,54 @@ deal={1:'grub on the go',2:'trio feast',3:'any 2 deal'}
 price_deal={'grub on the go':{'4 krunch burgers,1 ltr. drink':[1,999]},'trio feast':{'3 cowboys,1 small frizza,3 regular drinks':[1,1699]},'any 2 deal':{'any two burgers, any two drinks':[1,1299]}}
 any_2_deal_burger={1:'Bronco chicken burger',2:'cronco chicken burger',3:'mighty rodeo chicken',4:'big bang',5:'big ben(+99)',6:'fajita',7:'pablito',8:'cowboy',9:'mighty rodeo beef',10:'Butcher',11:'taxes jack',12:'beef steak'}
 any_2_deal_drinks={1:'mirinda',2:'pepsi'}
-
-#****************************************
-#*** Function to order chicken burger ***
-#****************************************
 def order_chicken_burger(bill,dic):
     ls=[]
-    inp=int(input("Enter the order number :"))
+    inp=int(input("Enter your order no :"))
     while True:
-        if inp <= 6 and inp > 0:
+        if inp<=10 and inp>0:
             break
         else:
             inp = int(input("Wrong Input. Please Enter your order no again:"))
-    q=int(input("Enter the quantity :"))
-    if inp>=1 and inp<=6:
+    q=int(input("Enter Quantity : "))
+    if inp>=1 and inp<=9:
         print("combo or regular")
-        print("Enter 'c' for combo", "Enter 'r' for regular")
-        a = input()
+        print("Enter 'c' for combo","Enter 'r' for regular")
+        a=input()
         while True:
             if a == 'c' or a == 'r':
                 break
             else:
                 print("Wrong Input.Please Enter 'c' for combo and 'r' for regular")
                 a = input()
-        if a == 'c':
-            for k, v in beef_burger.items():
+        if a=='c':
+            for k , v in chicken_burger.items():
                 if k == inp:
-                    ls.append(v + "(combo)")
+                    ls.append(v+'(combo)')
                     ls.append(q)
-                    for c, d in price_beef_burger.items():
+                    for c,d in price_chicken_burger.items():
                         if v == c:
                             ls.append(d[1])
-                            bill[0] = bill[0] + q * d[1]
-        if a == 'r':
-            for k, v in beef_burger.items():
-                ls.append(v + "(regular)")
-                ls.append(q)
+                            bill[0]=bill[0] + q*d[1]
+        elif a=='r':
+            for k , v in chicken_burger.items():
                 if k == inp:
-                    for c, d in price_beef_burger.items():
+                    ls.append(v + "(regular)")
+                    ls.append(q)
+                    for c,d in price_chicken_burger.items():
                         if v == c:
                             ls.append(d[0])
-                            bill[0] = bill[0] + q * d[0]
+                            bill[0]=bill[0] + q *d[0]
+    if inp == 10:
+        for k, v in chicken_burger.items():
+            if k == inp:
+                ls.append(v)
+                ls.append(q)
+                for c, d in price_chicken_burger.items():
+                    if v == c:
+                        ls.append(d)
+                        bill[0] = bill[0] + q *d
     dic[len(dic)+1]=ls
     return bill
-#*************************************
-#*** Function to order beef burger ***
-#*************************************
-
 def order_beef_burger(bill,dic):
     ls=[]
     inp=int(input("Enter the order number :"))
@@ -104,11 +101,6 @@ def order_beef_burger(bill,dic):
                             bill[0] = bill[0] + q * d[0]
     dic[len(dic)+1]=ls
     return bill
-
-#*******************************
-#*** Function to order pizza ***
-#*******************************
-
 def order_pizza(bill,dic):
     ls=[]
     inp = int(input("Enter your order no :"))
@@ -136,11 +128,6 @@ def order_pizza(bill,dic):
         print("WRONG INPUT")
     dic[len(dic)+1]=ls
     return bill
-
-#*******************************
-#*** Function to order fries ***
-#*******************************
-
 def order_fries(bill,dic):
     ls=[]
     inp = int(input("Enter your order no :"))
@@ -177,11 +164,6 @@ def order_fries(bill,dic):
         print('WRONG INPUT')
     dic[len(dic)+1]=ls
     return bill
-
-#********************************
-#*** Function to order drinks ***
-#********************************
-
 def order_drinks(bill,dic):
     ls=[]
     inp = int(input("Enter your order no :"))
@@ -202,11 +184,6 @@ def order_drinks(bill,dic):
                         bill[0] = bill[0] + q * d
     dic[len(dic)+1]=ls
     return bill
-
-#*************************************
-#*** Function to order quick bites ***
-#*************************************
-
 def order_quick_bites(bill,dic):
     inp = int(input("Enter your order no :"))
     while True:
@@ -248,11 +225,6 @@ def order_quick_bites(bill,dic):
                                     ls.append(f[1])
                                     dic[len(dic)+1]=ls
     return bill
-
-#*******************************
-#*** Function to order deals ***
-#*******************************
-
 def order_deal(bill,dic):
     inp = int(input("Enter deal no :"))
     while True:
@@ -299,11 +271,6 @@ def order_deal(bill,dic):
                             bill[0]=bill[0]+q * h[1]
     dic[len(dic)+1]=ls
     return bill
-
-#**********************************
-#*** Function to print the menu ***
-#**********************************
-
 def print_menu(a,b):
     print("ord.no\t\tmenu")
     for k, v in a.items():
@@ -318,11 +285,6 @@ def print_menu(a,b):
                     for e,f in d.items():
                         print('\tPRICE:',f[1],'   ',e)
     return
-
-#**********************************
-#*** Function to print all menu ***
-#**********************************
-
 def print_all_menu():
     print('::::::::::::::::CHICKEN BURGERS::::::::::::::::::')
     print_menu(chicken_burger,price_chicken_burger)
@@ -339,17 +301,10 @@ def print_all_menu():
     print('::::::::::::::::::::::DEALS::::::::::::::::::::::')
     print_menu(deal,price_deal)
     return
-
-
 import csv
 import pandas as pd
 import numpy as np
 from datetime import datetime
-
-#************************************
-#*** Saving and printing the bill ***
-#************************************
-
 def print_bill(bill,dic):
     print('YOUR BILL:')
     arr1 = np.loadtxt('orders.csv', delimiter=",", dtype='str')
@@ -381,11 +336,6 @@ def print_bill(bill,dic):
     print(arr2[row1:row2,:])
     print('Total\t',bill[0])
     return
-
-#*********************
-#*** Main program ***
-#********************
-
 print_all_menu()
 bill=[0]
 order={}
