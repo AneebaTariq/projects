@@ -1,0 +1,13 @@
+@relation beach
+@attribute condition{sunny,cloudy,rainy}
+@attribute temp numeric
+@attribute can_we_go{Yes,No}
+ 
+@data 
+
+sunny,75,Yes
+rainy,60,No
+cloudy,60,Yes
+sunny,75,Yes
+rainy,60,No
+cloudy,60,Yes
